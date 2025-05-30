@@ -1,0 +1,826 @@
+<html class="scroll-smooth" lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Sistem Informasi Database Jemaat GBdI Thiranust Medan
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Montserrat', 'Roboto', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gradient-to-b from-indigo-50 via-white to-indigo-100 min-h-screen flex flex-col">
+  <!-- Header / Navbar -->
+  <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <div class="flex items-center space-x-3">
+     <img alt="Logo gereja GBdI Thiranust Medan, lambang salib dan burung merpati putih di latar belakang biru" class="h-18 w-20 rounded-full" height="50" src="gbdi.png" width="50"/>
+     <h1 class="text-2xl font-bold tracking-wide select-none">
+      GBdI Thiranust Medan
+     </h1>
+    </div>
+    <nav class="hidden md:flex space-x-8 font-semibold text-indigo-200">
+     <a class="hover:text-white transition" href="#dashboard">
+      Dashboard
+     </a>
+     <a class="hover:text-white transition" href="#data-jemaat">
+      Data Jemaat
+     </a>
+     <a class="hover:text-white transition" href="#tambah-jemaat">
+      Tambah Jemaat
+     </a>
+     <a class="hover:text-white transition" href="#tentang">
+      Tentang
+     </a>
+    </nav>
+    <button aria-label="Toggle menu" class="md:hidden focus:outline-none focus:ring-2 focus:ring-white rounded" id="mobile-menu-button">
+     <i class="fas fa-bars text-2xl">
+     </i>
+    </button>
+   </div>
+   <nav class="md:hidden bg-indigo-800 text-indigo-100 space-y-1 px-4 py-3 hidden" id="mobile-menu">
+    <a class="block py-2 px-3 rounded hover:bg-indigo-700 transition" href="#dashboard">
+     Dashboard
+    </a>
+    <a class="block py-2 px-3 rounded hover:bg-indigo-700 transition" href="#data-jemaat">
+     Data Jemaat
+    </a>
+    <a class="block py-2 px-3 rounded hover:bg-indigo-700 transition" href="#tambah-jemaat">
+     Tambah Jemaat
+    </a>
+    <a class="block py-2 px-3 rounded hover:bg-indigo-700 transition" href="#tentang">
+     Tentang
+    </a>
+   </nav>
+  </header>
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+   <!-- Dashboard Section -->
+   <section class="mb-12" id="dashboard">
+    <h2 class="text-3xl font-extrabold text-indigo-900 mb-6 text-center">
+     Dashboard Jemaat
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+     <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-indigo-900">
+      <i class="fas fa-users fa-3x mb-4 text-indigo-600">
+      </i>
+      <p class="text-4xl font-bold" id="total-jemaat">
+       10
+      </p>
+      <p class="text-lg font-medium mt-1">
+       Total Jemaat
+      </p>
+     </div>
+     <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-indigo-900">
+      <i class="fas fa-male fa-3x mb-4 text-indigo-600">
+      </i>
+      <p class="text-4xl font-bold" id="total-laki">
+       5
+      </p>
+      <p class="text-lg font-medium mt-1">
+       Laki-laki
+      </p>
+     </div>
+     <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-indigo-900">
+      <i class="fas fa-female fa-3x mb-4 text-indigo-600">
+      </i>
+      <p class="text-4xl font-bold" id="total-perempuan">
+       5
+      </p>
+      <p class="text-lg font-medium mt-1">
+       Perempuan
+      </p>
+     </div>
+     <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-indigo-900">
+      <i class="fas fa-bible fa-3x mb-4 text-indigo-600">
+      </i>
+      <p class="text-4xl font-bold" id="total-anggota-aktif">
+       8
+      </p>
+      <p class="text-lg font-medium mt-1">
+       Anggota Aktif
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Data Jemaat Section -->
+   <section class="mb-12" id="data-jemaat">
+    <h2 class="text-3xl font-extrabold text-indigo-900 mb-6 text-center">
+     Data Jemaat
+    </h2>
+    <div class="overflow-x-auto rounded-lg shadow-lg">
+     <table class="min-w-full bg-white divide-y divide-indigo-200" id="table-jemaat">
+      <thead class="bg-indigo-900 text-white">
+       <tr>
+        <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" scope="col">
+         No
+        </th>
+        <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" scope="col">
+         Nama Lengkap
+        </th>
+        <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" scope="col">
+         Jenis Kelamin
+        </th>
+        <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" scope="col">
+         Tanggal Lahir
+        </th>
+        <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" scope="col">
+         Alamat
+        </th>
+        <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" scope="col">
+         Status
+        </th>
+        <th class="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider" scope="col">
+         Aksi
+        </th>
+       </tr>
+      </thead>
+      <tbody class="divide-y divide-indigo-100 text-indigo-900" id="tbody-jemaat">
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         1
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Maria Simanjuntak
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Perempuan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1985-07-12
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Merpati No. 12, Medan">
+         Jl. Merpati No. 12, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Maria Simanjuntak" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Maria Simanjuntak" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         2
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Jonathan Sihombing
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Laki-laki
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1990-03-22
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Melati No. 45, Medan">
+         Jl. Melati No. 45, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Jonathan Sihombing" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Jonathan Sihombing" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         3
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Esther Hutabarat
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Perempuan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1978-11-05
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Kenanga No. 7, Medan">
+         Jl. Kenanga No. 7, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+          Tidak Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Esther Hutabarat" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Esther Hutabarat" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         4
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Samuel Tobing
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Laki-laki
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         2000-01-15
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Dahlia No. 21, Medan">
+         Jl. Dahlia No. 21, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Samuel Tobing" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Samuel Tobing" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         5
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Lina Sitorus
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Perempuan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1995-09-30
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Anggrek No. 10, Medan">
+         Jl. Anggrek No. 10, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Lina Sitorus" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Lina Sitorus" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         6
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Andreas Manurung
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Laki-laki
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1988-06-18
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Cempaka No. 33, Medan">
+         Jl. Cempaka No. 33, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Andreas Manurung" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Andreas Manurung" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         7
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Sari Hutapea
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Perempuan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1992-12-02
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Flamboyan No. 5, Medan">
+         Jl. Flamboyan No. 5, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+          Tidak Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Sari Hutapea" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Sari Hutapea" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         8
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Budi Santoso
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Laki-laki
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1975-04-10
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Angkasa No. 18, Medan">
+         Jl. Angkasa No. 18, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Budi Santoso" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Budi Santoso" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         9
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Dewi Lestari
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Perempuan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1983-08-25
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Melur No. 9, Medan">
+         Jl. Melur No. 9, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Dewi Lestari" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Dewi Lestari" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+       <tr class="hover:bg-indigo-50 transition">
+        <td class="px-6 py-4 whitespace-nowrap">
+         10
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap font-semibold">
+         Rizky Pratama
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         Laki-laki
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         1998-05-14
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="Jl. Kenari No. 27, Medan">
+         Jl. Kenari No. 27, Medan
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+         <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+          Aktif
+         </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+         <button aria-label="Edit Rizky Pratama" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit">
+          <i class="fas fa-edit">
+          </i>
+         </button>
+         <button aria-label="Hapus Rizky Pratama" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete">
+          <i class="fas fa-trash-alt">
+          </i>
+         </button>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </section>
+   <!-- Tambah Jemaat Section -->
+   <section class="mb-12 max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8" id="tambah-jemaat">
+    <h2 class="text-3xl font-extrabold text-indigo-900 mb-6 text-center">
+     Tambah Data Jemaat
+    </h2>
+    <form class="space-y-6" id="form-jemaat" novalidate="">
+     <div>
+      <label class="block text-indigo-900 font-semibold mb-1" for="nama">
+       Nama Lengkap
+      </label>
+      <input class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="nama" name="nama" placeholder="Masukkan nama lengkap" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-indigo-900 font-semibold mb-1">
+       Jenis Kelamin
+      </label>
+      <div class="flex items-center space-x-6">
+       <label class="inline-flex items-center">
+        <input class="form-radio text-indigo-600" name="jenisKelamin" required="" type="radio" value="Laki-laki"/>
+        <span class="ml-2 text-indigo-900">
+         Laki-laki
+        </span>
+       </label>
+       <label class="inline-flex items-center">
+        <input class="form-radio text-indigo-600" name="jenisKelamin" type="radio" value="Perempuan"/>
+        <span class="ml-2 text-indigo-900">
+         Perempuan
+        </span>
+       </label>
+      </div>
+     </div>
+     <div>
+      <label class="block text-indigo-900 font-semibold mb-1" for="tanggalLahir">
+       Tanggal Lahir
+      </label>
+      <input class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="tanggalLahir" name="tanggalLahir" required="" type="date"/>
+     </div>
+     <div>
+      <label class="block text-indigo-900 font-semibold mb-1" for="alamat">
+       Alamat
+      </label>
+      <textarea class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" id="alamat" name="alamat" placeholder="Masukkan alamat lengkap" required="" rows="3"></textarea>
+     </div>
+     <div>
+      <label class="block text-indigo-900 font-semibold mb-1" for="status">
+       Status
+      </label>
+      <select class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="status" name="status" required="">
+       <option disabled="" selected="" value="">
+        Pilih status
+       </option>
+       <option value="Aktif">
+        Aktif
+       </option>
+       <option value="Tidak Aktif">
+        Tidak Aktif
+       </option>
+      </select>
+     </div>
+     <div class="text-center">
+      <button class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-6 py-3 rounded-md shadow-md transition" type="submit">
+       Tambah Jemaat
+      </button>
+     </div>
+    </form>
+   </section>
+   <!-- Tentang Section -->
+   <section class="max-w-4xl mx-auto bg-indigo-50 rounded-lg p-8 shadow-lg" id="tentang">
+    <h2 class="text-3xl font-extrabold text-indigo-900 mb-6 text-center">
+     Tentang GBdI Thiranust Medan
+    </h2>
+    <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+     <img alt="Foto gedung gereja GBdI Thiranust Medan dengan latar belakang langit biru cerah dan pepohonan hijau" class="rounded-lg shadow-md w-full md:w-1/2 object-cover" height="200" src="https://storage.googleapis.com/a1aa/image/0044a847-2039-4289-c852-3ad039989d9c.jpg" width="300"/>
+     <div class="text-indigo-900 text-lg leading-relaxed">
+      <p>
+       Gereja Bethel di Indonesia (GBdI) Thiranust Medan adalah komunitas iman yang berdedikasi untuk melayani Tuhan dan masyarakat sekitar dengan kasih dan semangat pelayanan.
+      </p>
+      <p class="mt-4">
+       Sistem informasi ini dirancang untuk memudahkan pengelolaan data jemaat secara modern, aman, dan mudah digunakan. Dengan tampilan yang bersih dan tema gerejawi yang hangat, kami berharap dapat membantu pengurus gereja dalam mengelola data jemaat dengan efisien.
+      </p>
+      <p class="mt-4 font-semibold">
+       Tuhan memberkati pelayanan kita semua.
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-indigo-900 text-indigo-200 py-6 mt-auto">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+    © 2025 GBdI Thiranust Medan. Semua hak cipta dilindungi.
+   </div>
+  </footer>
+  <script>
+   // Mobile menu toggle
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Data jemaat array to hold current data
+    let dataJemaat = [
+      {
+        nama: "Maria Simanjuntak",
+        jenisKelamin: "Perempuan",
+        tanggalLahir: "1985-07-12",
+        alamat: "Jl. Merpati No. 12, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Jonathan Sihombing",
+        jenisKelamin: "Laki-laki",
+        tanggalLahir: "1990-03-22",
+        alamat: "Jl. Melati No. 45, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Esther Hutabarat",
+        jenisKelamin: "Perempuan",
+        tanggalLahir: "1978-11-05",
+        alamat: "Jl. Kenanga No. 7, Medan",
+        status: "Tidak Aktif"
+      },
+      {
+        nama: "Samuel Tobing",
+        jenisKelamin: "Laki-laki",
+        tanggalLahir: "2000-01-15",
+        alamat: "Jl. Dahlia No. 21, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Lina Sitorus",
+        jenisKelamin: "Perempuan",
+        tanggalLahir: "1995-09-30",
+        alamat: "Jl. Anggrek No. 10, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Andreas Manurung",
+        jenisKelamin: "Laki-laki",
+        tanggalLahir: "1988-06-18",
+        alamat: "Jl. Cempaka No. 33, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Sari Hutapea",
+        jenisKelamin: "Perempuan",
+        tanggalLahir: "1992-12-02",
+        alamat: "Jl. Flamboyan No. 5, Medan",
+        status: "Tidak Aktif"
+      },
+      {
+        nama: "Budi Santoso",
+        jenisKelamin: "Laki-laki",
+        tanggalLahir: "1975-04-10",
+        alamat: "Jl. Angkasa No. 18, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Dewi Lestari",
+        jenisKelamin: "Perempuan",
+        tanggalLahir: "1983-08-25",
+        alamat: "Jl. Melur No. 9, Medan",
+        status: "Aktif"
+      },
+      {
+        nama: "Rizky Pratama",
+        jenisKelamin: "Laki-laki",
+        tanggalLahir: "1998-05-14",
+        alamat: "Jl. Kenari No. 27, Medan",
+        status: "Aktif"
+      }
+    ];
+
+    // Function to render table rows from dataJemaat
+    function renderTable() {
+      const tbody = document.getElementById('tbody-jemaat');
+      tbody.innerHTML = '';
+      dataJemaat.forEach((jemaat, index) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-indigo-50 transition';
+
+        const statusColor = jemaat.status === 'Aktif' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+
+        tr.innerHTML = `
+          <td class="px-6 py-4 whitespace-nowrap">${index + 1}</td>
+          <td class="px-6 py-4 whitespace-nowrap font-semibold">${jemaat.nama}</td>
+          <td class="px-6 py-4 whitespace-nowrap">${jemaat.jenisKelamin}</td>
+          <td class="px-6 py-4 whitespace-nowrap">${jemaat.tanggalLahir}</td>
+          <td class="px-6 py-4 whitespace-nowrap max-w-xs truncate" title="${jemaat.alamat}">${jemaat.alamat}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full ${statusColor}">
+              ${jemaat.status}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
+            <button aria-label="Edit ${jemaat.nama}" class="text-indigo-600 hover:text-indigo-900 focus:outline-none btn-edit" data-index="${index}">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button aria-label="Hapus ${jemaat.nama}" class="text-red-600 hover:text-red-900 focus:outline-none btn-delete" data-index="${index}">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      updateDashboard();
+      attachActionListeners();
+    }
+
+    // Update dashboard counts
+    function updateDashboard() {
+      const total = dataJemaat.length;
+      const laki = dataJemaat.filter(j => j.jenisKelamin === 'Laki-laki').length;
+      const perempuan = dataJemaat.filter(j => j.jenisKelamin === 'Perempuan').length;
+      const aktif = dataJemaat.filter(j => j.status === 'Aktif').length;
+
+      document.getElementById('total-jemaat').textContent = total;
+      document.getElementById('total-laki').textContent = laki;
+      document.getElementById('total-perempuan').textContent = perempuan;
+      document.getElementById('total-anggota-aktif').textContent = aktif;
+    }
+
+    // Attach event listeners to edit and delete buttons
+    function attachActionListeners() {
+      const editButtons = document.querySelectorAll('.btn-edit');
+      const deleteButtons = document.querySelectorAll('.btn-delete');
+
+      editButtons.forEach(btn => {
+        btn.onclick = () => {
+          const index = btn.getAttribute('data-index');
+          openEditModal(index);
+        };
+      });
+
+      deleteButtons.forEach(btn => {
+        btn.onclick = () => {
+          const index = btn.getAttribute('data-index');
+          if (confirm(`Apakah Anda yakin ingin menghapus data jemaat "${dataJemaat[index].nama}"?`)) {
+            dataJemaat.splice(index, 1);
+            renderTable();
+            alert('Data jemaat berhasil dihapus.');
+          }
+        };
+      });
+    }
+
+    // Modal creation for editing
+    function openEditModal(index) {
+      const jemaat = dataJemaat[index];
+
+      // Create modal container
+      const modal = document.createElement('div');
+      modal.id = 'edit-modal';
+      modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+
+      modal.innerHTML = `
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+          <h3 class="text-2xl font-bold text-indigo-900 mb-4">Edit Data Jemaat</h3>
+          <form id="edit-form" class="space-y-4">
+            <div>
+              <label for="edit-nama" class="block text-indigo-900 font-semibold mb-1">Nama Lengkap</label>
+              <input type="text" id="edit-nama" name="nama" value="${jemaat.nama}" required class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+            </div>
+            <div>
+              <label class="block text-indigo-900 font-semibold mb-1">Jenis Kelamin</label>
+              <div class="flex items-center space-x-6">
+                <label class="inline-flex items-center">
+                  <input type="radio" name="jenisKelamin" value="Laki-laki" ${jemaat.jenisKelamin === 'Laki-laki' ? 'checked' : ''} class="form-radio text-indigo-600" required/>
+                  <span class="ml-2 text-indigo-900">Laki-laki</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="radio" name="jenisKelamin" value="Perempuan" ${jemaat.jenisKelamin === 'Perempuan' ? 'checked' : ''} class="form-radio text-indigo-600"/>
+                  <span class="ml-2 text-indigo-900">Perempuan</span>
+                </label>
+              </div>
+            </div>
+            <div>
+              <label for="edit-tanggalLahir" class="block text-indigo-900 font-semibold mb-1">Tanggal Lahir</label>
+              <input type="date" id="edit-tanggalLahir" name="tanggalLahir" value="${jemaat.tanggalLahir}" required class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+            </div>
+            <div>
+              <label for="edit-alamat" class="block text-indigo-900 font-semibold mb-1">Alamat</label>
+              <textarea id="edit-alamat" name="alamat" rows="3" required class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none">${jemaat.alamat}</textarea>
+            </div>
+            <div>
+              <label for="edit-status" class="block text-indigo-900 font-semibold mb-1">Status</label>
+              <select id="edit-status" name="status" required class="w-full border border-indigo-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="Aktif" ${jemaat.status === 'Aktif' ? 'selected' : ''}>Aktif</option>
+                <option value="Tidak Aktif" ${jemaat.status === 'Tidak Aktif' ? 'selected' : ''}>Tidak Aktif</option>
+              </select>
+            </div>
+            <div class="flex justify-end space-x-4 mt-6">
+              <button type="button" id="btn-cancel" class="px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold focus:outline-none">Batal</button>
+              <button type="submit" class="px-4 py-2 rounded-md bg-indigo-700 hover:bg-indigo-800 text-white font-semibold focus:outline-none">Simpan</button>
+            </div>
+          </form>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      // Cancel button closes modal
+      modal.querySelector('#btn-cancel').onclick = () => {
+        modal.remove();
+      };
+
+      // Form submit handler
+      modal.querySelector('#edit-form').onsubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const nama = formData.get('nama').trim();
+        const jenisKelamin = formData.get('jenisKelamin');
+        const tanggalLahir = formData.get('tanggalLahir');
+        const alamat = formData.get('alamat').trim();
+        const status = formData.get('status');
+
+        if (!nama || !jenisKelamin || !tanggalLahir || !alamat || !status) {
+          alert('Mohon lengkapi semua data dengan benar.');
+          return;
+        }
+
+        dataJemaat[index] = { nama, jenisKelamin, tanggalLahir, alamat, status };
+        renderTable();
+        modal.remove();
+        alert(`Data jemaat "${nama}" berhasil diperbarui.`);
+      };
+    }
+
+    // Form submission handler for adding new jemaat
+    const form = document.getElementById('form-jemaat');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const nama = formData.get('nama').trim();
+      const jenisKelamin = formData.get('jenisKelamin');
+      const tanggalLahir = formData.get('tanggalLahir');
+      const alamat = formData.get('alamat').trim();
+      const status = formData.get('status');
+
+      if (!nama || !jenisKelamin || !tanggalLahir || !alamat || !status) {
+        alert('Mohon lengkapi semua data dengan benar.');
+        return;
+      }
+
+      dataJemaat.push({ nama, jenisKelamin, tanggalLahir, alamat, status });
+      renderTable();
+      alert(`Data jemaat "${nama}" berhasil ditambahkan!`);
+      form.reset();
+      // Scroll to data jemaat section after adding
+      document.getElementById('data-jemaat').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Initial render
+    renderTable();
+  </script>
+ </body>
+</html>
